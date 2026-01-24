@@ -2,7 +2,7 @@
 title: "La Guerra Silenciosa por la Regulación de la IA en EE.UU.: ¿Cómo Afecta a Su Negocio?"
 slug: "guerra-silenciosa-regulacion-ia-eeuu"
 date: 2026-01-24T01:35:44-05:00
-draft: true
+draft: false
 author: "carlos"
 description: "Descubra la creciente batalla por la regulación de la IA en Estados Unidos y cómo la incertidumbre política impacta a las empresas. Consejos prácticos para navegar este panorama complejo."
 categories: ["Tech", "AI"]

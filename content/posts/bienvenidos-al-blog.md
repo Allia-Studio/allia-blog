@@ -2,7 +2,7 @@
 title: "Bienvenidos al Blog de Allia Studio"
 slug: "bienvenidos-al-blog"
 date: 2025-01-23T12:00:00-05:00
-draft: false
+draft: true
 author: "Allia Studio"
 description: "Lanzamos nuestro blog de tecnología con insights sobre IA, desarrollo y transformación digital para empresas."
 categories: ["Anuncios"]
