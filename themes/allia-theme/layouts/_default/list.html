@@ -1,34 +1,54 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
+<nav class="breadcrumb">
+    <a href="{{ .Site.BaseURL }}"><span class="accent">~</span></a>/{{ .Section }}/
+</nav>
 
-{{ if .Content }}
-<div class="content">
-    {{ .Content }}
-</div>
-{{ end }}
+<header class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}
+    <div class="page-description">{{ . }}</div>
+    {{ else }}
+    <p>Explora todos nuestros articulos sobre tecnologia, desarrollo y negocios.</p>
+    {{ end }}
+</header>
 
-<div class="post-list">
+{{ if .Pages }}
+<div class="post-grid">
     {{ range .Pages }}
     <article class="post-card">
+        <div class="post-card-image">
+            {{ with .Params.image }}
+            <img src="{{ . }}" alt="{{ $.Title }}">
+            {{ else }}
+            <span>// no image</span>
+            {{ end }}
+        </div>
+
+        {{ with .Params.categories }}
+        <div class="post-card-tags">
+            {{ range first 2 . }}<span class="tag">{{ . }}</span>{{ end }}
+        </div>
+        {{ end }}
+
         <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-        <div class="post-meta">
-            {{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>{{ end }}
-            {{ with .Params.author }} &middot; {{ . }}{{ end }}
+
+        <p class="post-card-excerpt">
+            {{ if .Description }}{{ .Description }}{{ else }}{{ .Summary | truncate 120 }}{{ end }}
+        </p>
+
+        <div class="post-card-meta">
+            {{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>{{ end }}
+            {{ with .Params.author }} &middot; @{{ . }}{{ end }}
             {{ if .ReadingTime }} &middot; {{ .ReadingTime }} min read{{ end }}
         </div>
-        {{ if .Description }}
-        <p class="post-excerpt">{{ .Description }}</p>
-        {{ else }}
-        <p class="post-excerpt">{{ .Summary | truncate 160 }}</p>
-        {{ end }}
-        {{ with .Params.categories }}
-        <div class="post-categories">
-            {{ range . }}<span class="category">{{ . }}</span>{{ end }}
-        </div>
-        {{ end }}
     </article>
     {{ end }}
 </div>
 
 {{ template "_internal/pagination.html" . }}
+{{ else }}
+<div class="empty-state">
+    <p>No hay posts en esta seccion.</p>
+</div>
+{{ end }}
 {{ end }}

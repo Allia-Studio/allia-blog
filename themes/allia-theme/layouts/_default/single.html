@@ -1,18 +1,32 @@
 {{ define "main" }}
 <article class="post">
+    <nav class="breadcrumb">
+        <a href="{{ .Site.BaseURL }}"><span class="accent">~</span></a>/<a href="{{ "posts/" | relURL }}">posts</a>/{{ .File.BaseFileName }}
+    </nav>
+
     <header class="post-header">
-        <h1>{{ .Title }}</h1>
-        <div class="post-meta">
-            {{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>{{ end }}
-            {{ with .Params.author }} &middot; {{ . }}{{ end }}
-            {{ if .ReadingTime }} &middot; {{ .ReadingTime }} min read{{ end }}
-        </div>
         {{ with .Params.categories }}
-        <div class="post-categories">
-            {{ range . }}<a href="{{ "/categories/" | relURL }}{{ . | urlize }}" class="category">{{ . }}</a>{{ end }}
+        <div class="post-header-tags">
+            {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
         </div>
         {{ end }}
+
+        <h1>{{ .Title }}</h1>
+
+        <div class="post-meta">
+            {{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>{{ end }}
+            {{ with .Params.author }} &middot; @{{ . }}{{ end }}
+            {{ if .ReadingTime }} &middot; {{ .ReadingTime }} min read{{ end }}
+        </div>
     </header>
+
+    <div class="post-featured-image">
+        {{ with .Params.image }}
+        <img src="{{ . }}" alt="{{ $.Title }}">
+        {{ else }}
+        <span>// featured image</span>
+        {{ end }}
+    </div>
 
     <div class="post-content">
         {{ .Content }}
@@ -20,28 +34,32 @@
 
     {{ with .Params.tags }}
     <footer class="post-footer">
-        <div class="post-tags">
-            <strong>Tags:</strong>
+        <div class="post-footer-tags">
             {{ range . }}
             <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag">#{{ . }}</a>
             {{ end }}
         </div>
     </footer>
     {{ end }}
-
-    <div class="post-cta">
-        <h3>Transforma tu negocio con tecnología</h3>
-        <p>En Allia Studio ayudamos a empresas a crecer con soluciones digitales inteligentes.</p>
-        <a href="https://allia.dev" class="cta-button">Conoce más</a>
-    </div>
 </article>
 
 <nav class="post-navigation">
     {{ with .PrevInSection }}
-    <a href="{{ .Permalink }}" class="prev">&larr; {{ .Title | truncate 40 }}</a>
+    <a href="{{ .Permalink }}" class="post-nav-link prev">
+        <span class="post-nav-label">&larr; Previous</span>
+        <span class="post-nav-title">{{ .Title | truncate 50 }}</span>
+    </a>
+    {{ else }}
+    <div class="post-nav-link prev" style="visibility: hidden;"></div>
     {{ end }}
+
     {{ with .NextInSection }}
-    <a href="{{ .Permalink }}" class="next">{{ .Title | truncate 40 }} &rarr;</a>
+    <a href="{{ .Permalink }}" class="post-nav-link next">
+        <span class="post-nav-label">Next &rarr;</span>
+        <span class="post-nav-title">{{ .Title | truncate 50 }}</span>
+    </a>
+    {{ else }}
+    <div class="post-nav-link next" style="visibility: hidden;"></div>
     {{ end }}
 </nav>
 {{ end }}
