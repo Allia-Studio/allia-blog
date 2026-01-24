@@ -1,0 +1,10 @@
+name = "Allia Theme"
+license = "MIT"
+licenselink = "https://github.com/allia-studio/allia-blog/blob/main/LICENSE"
+description = "Tema minimalista para el blog de Allia Studio"
+homepage = "https://allia.dev"
+min_version = "0.112.0"
+
+[author]
+  name = "Allia Studio"
+  homepage = "https://allia.dev"

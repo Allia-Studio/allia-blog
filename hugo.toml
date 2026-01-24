@@ -1,0 +1,45 @@
+baseURL = 'https://allia-studio.github.io/allia-blog/'
+languageCode = 'es'
+title = 'Allia Studio Blog'
+theme = 'allia-theme'
+
+# Build settings
+enableRobotsTXT = true
+enableGitInfo = true
+
+[params]
+  description = "Tech insights y tendencias para empresas que quieren crecer con tecnología"
+  author = "Allia Studio"
+  mainSections = ["posts"]
+  showReadingTime = true
+  showDate = true
+  showAuthor = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[outputFormats.JSON]
+  mediaType = "application/json"
+  baseName = "index"
+  isPlainText = true
+
+[menu]
+  [[menu.main]]
+    name = "Blog"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "Allia Studio"
+    url = "https://allia.dev"
+    weight = 2
+
+[markup]
+  [markup.highlight]
+    style = "github"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
