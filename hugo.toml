@@ -46,3 +46,11 @@ enableGitInfo = true
 [taxonomies]
   category = "categories"
   tag = "tags"
+
+# Analytics
+[params.analytics]
+  enabled = true
+
+  [params.analytics.goatcounter]
+    enabled = true
+    code = "alliastudio"

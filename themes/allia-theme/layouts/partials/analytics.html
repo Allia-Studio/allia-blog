@@ -1,0 +1,20 @@
+{{/*
+  GoatCounter Analytics
+  Solo se carga cuando HUGO_ENVIRONMENT=production (configurado en GitHub Actions)
+  En desarrollo local (hugo server) no se carga
+*/}}
+
+{{ $isProduction := or (eq (getenv "HUGO_ENVIRONMENT") "production") (eq (getenv "HUGO_ENV") "production") }}
+
+{{ if and .Site.Params.analytics.enabled $isProduction }}
+  {{ with .Site.Params.analytics.goatcounter }}
+    {{ if and .enabled .code }}
+    <!-- GoatCounter Analytics -->
+    <script data-goatcounter="https://{{ .code }}.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+    <noscript>
+      <img src="https://{{ .code }}.goatcounter.com/count?p={{ $.RelPermalink }}" alt="">
+    </noscript>
+    {{ end }}
+  {{ end }}
+{{ end }}
