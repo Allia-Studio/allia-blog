@@ -3,6 +3,9 @@
 /resources/_gen/
 /.hugo_build.lock
 
+.claude/
+.mcp.json
+
 #docs
 docs/
 
