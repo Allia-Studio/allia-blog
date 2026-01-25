@@ -7,8 +7,8 @@ author: "carlos"
 description: "Descubra cómo los módulos de C++20 revolucionan el desarrollo de software. Mejoran la organización del código y previenen conflictos en tus proyectos."
 categories: ["Curiosidades", "Software"]
 tags: [c++, software, escalabilidad]
-image: "/posts/cplusplus.jpg"
-thumbnail: "/posts/cplusplus-thumb.jpg"
+image: "featured.jpg"
+thumbnail: "thumbnail.jpg"
 ---
 
 ## Modernice su Código C++ con Módulos: La Clave para Proyectos Escalables

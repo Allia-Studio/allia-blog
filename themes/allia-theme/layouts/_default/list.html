@@ -17,13 +17,19 @@
     {{ range .Pages }}
     <article class="post-card">
         <div class="post-card-image">
-            {{ with .Params.thumbnail }}
+            {{- $thumb := .Resources.GetMatch "thumbnail*" -}}
+            {{- $image := .Resources.GetMatch "featured*" -}}
+            {{ with $thumb }}
+            <img src="{{ .RelPermalink }}" alt="{{ $.Title }}">
+            {{ else }}{{ with $image }}
+            <img src="{{ .RelPermalink }}" alt="{{ $.Title }}">
+            {{ else }}{{ with $.Params.thumbnail }}
             <img src="{{ . }}" alt="{{ $.Title }}">
-            {{ else }}{{ with .Params.image }}
+            {{ else }}{{ with $.Params.image }}
             <img src="{{ . }}" alt="{{ $.Title }}">
             {{ else }}
             <span>// no image</span>
-            {{ end }}{{ end }}
+            {{ end }}{{ end }}{{ end }}{{ end }}
         </div>
 
         {{ with .Params.categories }}

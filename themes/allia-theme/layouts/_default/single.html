@@ -21,11 +21,14 @@
     </header>
 
     <div class="post-featured-image">
-        {{ with .Params.image }}
+        {{- $image := .Resources.GetMatch "featured*" -}}
+        {{ with $image }}
+        <img src="{{ .RelPermalink }}" alt="{{ $.Title }}">
+        {{ else }}{{ with $.Params.image }}
         <img src="{{ . }}" alt="{{ $.Title }}">
         {{ else }}
         <span>// featured image</span>
-        {{ end }}
+        {{ end }}{{ end }}
     </div>
 
     <div class="post-content">
